@@ -6,6 +6,11 @@
 		<div class = "nav_wrap">
 			<a href="<%= request.getContextPath()%>">홈</a>
 			&nbsp;&nbsp; | &nbsp;&nbsp;
+			
+			<%
+				session.get
+			%>
+			
 			<a href="<%= request.getContextPath()%>/signin_form.mem">로그인</a>
 			&nbsp;&nbsp; | &nbsp;&nbsp;
 			<a href="<%= request.getContextPath()%>/signup_form.mem">회원가입</a>
