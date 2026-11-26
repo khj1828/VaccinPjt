@@ -20,13 +20,13 @@ public class MemberService {
 		String admin_mail = request.getParameter("admin_mail");
 		String admin_phone = request.getParameter("admin_phone");
 		
-		boolean isMember = memberDao.isMember("admin_id");
+		boolean isMember = memberDao.isMember(admin_id);
 		
 		 int result = 0;
 		// 2. 회원가입
 		if (!isMember) {
 			result = memberDao.insertNewMember(
-					new MemberDto(admun_id, admun_pw, admun_mail, admun_phone));
+					new MemberDto(admin_id, admin_pw, admin_mail, admin_phone));
 			
 			if (result > 0) {
 				System.out.println("[MemberService] SIGNUP SUCESS!!");
@@ -45,9 +45,14 @@ public class MemberService {
 		
 		String admin_id = request.getParameter("admin_id");
 		String admin_pw = request.getParameter("admin_pw");
+		
 		MemberDto selectedMemberDto = memberDao.selectMemberByAdminId(admin_id);
 		
-		
+		if (selectedMemberDto != null && selectedMemberDto.getAdmin_pw().equals(admin_pw)) {
+			System.out.println("[MemberService] SIGNIN SUCCESS!!");
+			
+			return admin_id;  //원래 여기는 else문 이였으나 어차피 null이면 이결과 하나니 이렇게 해도 된다. 
+		}
 		
 		return null;
 	}

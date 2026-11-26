@@ -191,7 +191,7 @@ public class MemberDao implements DatabaseInfo {
 		
 		return memberDtos.size() > 0 ? memberDtos.get(0) : null;
 		
-		}
+		
 	}
 
 }

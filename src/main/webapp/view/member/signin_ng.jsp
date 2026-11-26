@@ -22,7 +22,7 @@
 	
 	<section>
 		<div class = "section_wrap">
-			<h1>SIGNUP FAIL!!</h1>
+			<h1>SIGNIN FAIL!!</h1>
 			
 			
 		</div>
