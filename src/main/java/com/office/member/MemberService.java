@@ -22,6 +22,9 @@ public class MemberService {
 		
 		boolean isMember = memberDao.isMember(admin_id);
 		
+		System.out.println("[Service] 입력된 ID: " + admin_id);
+		System.out.println("[Service] 중복 회원 여부: " + isMember);
+		
 		 int result = 0;
 		// 2. 회원가입
 		if (!isMember) {

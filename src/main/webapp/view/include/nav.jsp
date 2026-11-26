@@ -19,7 +19,7 @@
 				<c:otherwise>
 					<a href="${pageContext.request.contextPath}/signout_confirm.mem">로그아웃</a>
 					&nbsp;&nbsp; | &nbsp;&nbsp;
-					<a href="${pageContext.request.contextPath}/injection_regist_form.vac">백신접종등록</a>
+					<a href="${pageContext.request.contextPath}/injection_registe_form.vac">백신접종등록</a>
 					&nbsp;&nbsp; | &nbsp;&nbsp;
 					<a href="${pageContext.request.contextPath}/injection_list.vac">백신접종목록</a>
 				

@@ -1,5 +1,6 @@
 package com.office.vaccin;
 
+import jakarta.servlet.RequestDispatcher;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.HttpServlet;
@@ -7,35 +8,66 @@ import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import java.io.IOException;
 
-/**
- * Servlet implementation class VaccinController
- */
+
 @WebServlet("*.vac")
 public class VaccinController extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
-    /**
-     * @see HttpServlet#HttpServlet()
-     */
+    
     public VaccinController() {
         super();
-        // TODO Auto-generated constructor stub
+        
     }
 
-	/**
-	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
-	 */
+	
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		// TODO Auto-generated method stub
-		response.getWriter().append("Served at: ").append(request.getContextPath());
+		
+		String resultURI = request.getRequestURI();
+		String contextPath = request.getContextPath();
+		String command = resultURI.substring(contextPath.length());
+		
+		VaccinService vaccinService = null;
+		String nextPage = null;
+		
+		switch (command) {
+		case"/injection_registe_form.vac": 
+			
+			nextPage = generateView("regist_form");
+			
+			break;
+			
+		case "/injection_regitse_confirm.vac":
+			
+			vaccinService = new VaccinService(new VaccinDao());
+			int resultForRegist = vaccinService.registeConfirm(request, response);
+			
+			nextPage = generateView("regist_result");
+			
+			break;
+			
+		case "/injection_list.vac":
+			
+			vaccinService = new VaccinService(new VaccinDao());
+			vaccinService.listup(request, response);
+			
+			nextPage = generateView("registed_list");
+			
+			break;
+		}
+		
+		
+		RequestDispatcher dispatcher = request.getRequestDispatcher(nextPage);
+		dispatcher.forward(request, response);
 	}
 
-	/**
-	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
-	 */
+	
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		request.setCharacterEncoding("UTF-8");
 		doGet(request, response);
+	}
+	
+	private String generateView(String viewName) {
+		return "view/vaccin/" + viewName + ".jsp";
 	}
 
 }

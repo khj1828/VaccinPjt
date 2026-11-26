@@ -40,8 +40,10 @@ public class MemberController extends HttpServlet {
 			
 		case "/signup_confirm.mem":	 				//회원가입 양식
 			
+			
 			memberService = new MemberService(new MemberDao());
 			int resultForSignupConfirm = memberService.signupConfirm(request, response);
+			
 			
 			if (resultForSignupConfirm >0 ) {
 				nextPage = generateView("signup_ok");
@@ -97,7 +99,11 @@ public class MemberController extends HttpServlet {
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		request.setCharacterEncoding("UTF-8");
 		doGet(request, response);
+		
+		
 	}
+	
+	
 	
 	private String generateView(String viewName) {
 		return "view/member/" + viewName + ".jsp";

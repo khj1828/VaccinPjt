@@ -37,17 +37,17 @@
 		}
 	}
 	
-	const signupForm = () => {
-		console.log("signupForm (CALLED!!)");
+	const signinForm = () => {
+		console.log("signinForm (CALLED!!)");
 	
 	
-		let form = document.signup_form;
+		let form = document.signin_form;
 		if (form.admin_id.value === '') {
-			alert('Input new admin ID!!');
+			alert('Input admin ID!!');
 			form.admin_id.focus();
 			
 		} else if (form.admin_pw.value === '') {
-			alert('Input new admin PW!!');
+			alert('Input admin PW!!');
 			form.admin_pw.focus();
 			
 			
